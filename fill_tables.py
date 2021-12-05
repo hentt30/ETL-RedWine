@@ -11,8 +11,9 @@ def fill(csv_name, table_name):
     conn.commit()
 
 if __name__ == '__main__':
-    tables = ['acidity','chemicals','sulfurDioxide','wines']
+    tables = ['acidity','chemicals','sulfurdioxide','wines']
     csvs = ['./data/winequality_red_acidity.csv','./data/winequality_red_chemicals.csv','./data/winequality_red_sulfur.csv','./data/winequality_red_new.csv']
-
+    #
+    # 
     for table, csv in zip(tables,csvs):
         fill(csv,table)
