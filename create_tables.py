@@ -1,9 +1,10 @@
 """
-Script para criar as tabelas da nossa base de dadios
+Script para criar as tabelas da nossa base de dados
 """
 import psycopg2
 
-def acidity_table_query()->str :
+
+def acidity_table_query() -> str:
     """
     Retorna a query que cria a tabela acidity
     """
@@ -17,7 +18,7 @@ def acidity_table_query()->str :
     """
 
 
-def chemicals_table_query()->str :
+def chemicals_table_query() -> str:
     """
     Retorna a query que cria a tabela chemicals
     """
@@ -31,7 +32,7 @@ def chemicals_table_query()->str :
     """
 
 
-def sulfurDioxide_table_query()->str :
+def sulfurDioxide_table_query() -> str:
     """
     Retorna a query que cria a tabela sulfurDioxide
     """
@@ -43,7 +44,8 @@ def sulfurDioxide_table_query()->str :
     );
     """
 
-def wines_table_query()->str :
+
+def wines_table_query() -> str:
     """
     Retorna a query que cria a tabela wines
     """
@@ -69,11 +71,12 @@ def wines_table_query()->str :
     );
     """
 
+
 def create_tables():
     """
     Cria as tabelas
     """
-    queries = [acidity_table_query(),chemicals_table_query(),sulfurDioxide_table_query(),wines_table_query()]
+    queries = [acidity_table_query(), chemicals_table_query(), sulfurDioxide_table_query(), wines_table_query()]
 
     connection = None
     try:
@@ -95,7 +98,6 @@ def create_tables():
         if connection is not None:
             connection.close()
 
+
 if __name__ == "__main__":
     create_tables()
-
-    
