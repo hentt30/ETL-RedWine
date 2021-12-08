@@ -16,10 +16,10 @@ def extract(df):
     df_sulfur = df.filter(['sulfurid', 'free sulfur dioxide', 'total sulfur dioxide'], axis=1)
     df = df.drop(['free sulfur dioxide', 'total sulfur dioxide'], axis=1)
 
-    df.to_csv("data/winequality_red_new.csv")
-    df_chemicals.to_csv("data/winequality_red_chemicals.csv")
-    df_sulfur.to_csv("data/winequality_red_sulfur.csv")
-    df_acidity.to_csv("data/winequality_red_acidity.csv")
+    df.to_csv("data/winequality_red_new.csv", index=None)
+    df_chemicals.to_csv("data/winequality_red_chemicals.csv", index=None)
+    df_sulfur.to_csv("data/winequality_red_sulfur.csv", index=None)
+    df_acidity.to_csv("data/winequality_red_acidity.csv", index=None)
 
 
 if __name__ == '__main__':
