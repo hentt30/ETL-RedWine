@@ -51,19 +51,19 @@ def wines_table_query() -> str:
     """
     return """
     CREATE TABLE wines (
-    wineId INTEGER PRIMARY KEY,
-    ph FLOAT NOT NULL,
     density FLOAT NOT NULL,
+    ph FLOAT NOT NULL,
     alcoholLevel FLOAT NOT NULL,
     quality INTEGER NOT NULL,
-    sulfurId INTEGER NOT NULL,
+    wineId INTEGER PRIMARY KEY,
     chemicalId INTEGER NOT NULL,
+    sulfurId INTEGER NOT NULL,
     acidityId INTEGER NOT NULL,
-    FOREIGN KEY (sulfurId)
-    REFERENCES  sulfurDioxide (sulfurId)
-    ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (chemicalId)
     REFERENCES  chemicals (chemicalId)
+    ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (sulfurId)
+    REFERENCES  sulfurDioxide (sulfurId)
     ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (acidityId)
     REFERENCES  acidity (acidityId)
