@@ -72,6 +72,22 @@ def wines_table_query() -> str:
     """
 
 
+def generate_csv_query() -> str:
+    """
+    Retorna a query que produz o csv
+    """
+    return """
+    select ac.fixedacidity as "fixed acidity", ac.volatileacidity as "volatile acidity", ac.citricacid as "citric acid",
+    ch.residualsugars as "residual sugar", ch.chlorides as "chlorides", sd.freesulfurdioxide as "free sulfur dioxide",
+    sd.totalsulfurdioxide as "total sulfur dioxide", wi.density as "density", wi.ph as "pH", ch.sulphates as "sulphates",
+    wi.alcohollevel as "alcohol", wi.quality as "quality"
+    from acidity ac, chemicals ch, wines wi, sulfurdioxide sd
+    where wi.acidityid = ac.acidityid
+    and wi.sulfurid = sd.sulfurid
+    and wi.chemicalid = ch.chemicalid;
+    """
+
+
 def create_tables():
     """
     Cria as tabelas
