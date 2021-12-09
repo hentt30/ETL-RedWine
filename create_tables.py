@@ -84,8 +84,40 @@ def generate_csv_query() -> str:
     from acidity ac, chemicals ch, wines wi, sulfurdioxide sd
     where wi.acidityid = ac.acidityid
     and wi.sulfurid = sd.sulfurid
-    and wi.chemicalid = ch.chemicalid;
+    and wi.chemicalid = ch.chemicalid
     """
+
+
+def generate_csv():
+    """
+    Cria csv com todas as features
+    """
+    connection = None
+    try:
+        # read the connection parameters
+        params = "dbname='test' user='test' host='localhost' password='ces30'"
+        # connect to the PostgreSQL server
+        connection = psycopg2.connect(params)
+        current = connection.cursor()
+
+        # psql command
+        SQL_for_file_output = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(generate_csv_query())
+        csv_output = "wines.csv"
+
+        # Trap errors for opening the file
+        try:
+            with open(csv_output, 'w') as f_output:
+                current.copy_expert(SQL_for_file_output, f_output)
+        except psycopg2.Error as e:
+            print(e)
+
+        # close communication with the PostgreSQL database server
+        current.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if connection is not None:
+            connection.close()
 
 
 def create_tables():
@@ -117,3 +149,4 @@ def create_tables():
 
 if __name__ == "__main__":
     create_tables()
+    # generate_csv()
